@@ -83,6 +83,6 @@ const orderSchema = mongoose.Schema(
     }
 );
 
-const Order = mongoose.Model("Order", orderchema);
+const Order = mongoose.Model("Order", orderSchema);
 
 export default Order;
