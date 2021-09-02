@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import {Row, Col, Image, ListGroup, Card, Button} from "react-bootstrap";
 import Rating from "../components/Rating";
-import products from "../products";
+import axios from "axios";
+
 
 const ProductScreen = ({ match }) => {
     // match prop holds the variable in the url: https://reactrouter.com/web/api/match
-    const product = products.find(p => p._id === match.params.id)
+    // const product = products.find(p => p._id === match.params.id);
+
+    const [product, setproduct] = useState({});
+
+    useEffect(() => {
+        const fetchProduct = async () =>{
+            // destrcture data obkject from res directly
+            const { data } = await axios.get(`/api/products/${match.params.id}`);
+            setproduct(data);
+        }
+
+        fetchProduct();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <>
