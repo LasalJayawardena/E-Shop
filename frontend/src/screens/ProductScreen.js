@@ -19,8 +19,7 @@ const ProductScreen = ({ match }) => {
         }
 
         fetchProduct();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [match])
 
     return (
         <>
