@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDb from "./config/db.js";
 
 import productRoutes from "./routes/productRoutes.js";
@@ -17,6 +18,15 @@ app.get("/", (req,res) => {
 
 app.use('/api/products', productRoutes);
 
+// ======= Error middleware =======
+
+// For 404 Pages
+app.use(notFound);
+
+// For Invalid Product IDs
+app.use(errorHandler);
+
 
 const PORT = process.env.PORT || 5000 ;
+
 app.listen(PORT, console.log(`Server is now live on port: ${PORT} in ${process.env.NODE_ENV} mode.`.yellow.bold))
