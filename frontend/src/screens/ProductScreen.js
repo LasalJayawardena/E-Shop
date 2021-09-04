@@ -12,7 +12,7 @@ const ProductScreen = ({ history, match }) => {
     // match prop holds the variable in the url: https://reactrouter.com/web/api/match
     // const product = products.find(p => p._id === match.params.id);
 
-    const [qty, setQty] = useState(0);
+    const [qty, setQty] = useState(1);
 
     const dispatch = useDispatch();
 
@@ -24,12 +24,7 @@ const ProductScreen = ({ history, match }) => {
     }, [dispatch, match]);
 
     const addToCartHandler = () => {
-        console.log(qty === 0)
-        if (qty === 0){
-            history.push(`/cart/${match.params.id}?qty=1`);
-            return;
-        }
-        history.push(`/cart/${match.params.id}?qty=${qty}`)
+        history.push(`/cart/${match.params.id}?qty=${qty}`);
     }
 
     return (
